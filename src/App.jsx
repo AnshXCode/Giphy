@@ -1,9 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import Layout from './layout/Layout'
-import Home from './pages/home';
-import Category from './pages/category';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
 import { GifProvider } from "./context/context";
+import Layout from './layout/Layout';
+import Category from './pages/category';
+import Home from './pages/home';
 
 function App() {
 
