@@ -23,7 +23,11 @@ function App() {
           element: <Category />
         },
         {
-          path:"/search/:query",
+          path: "/search/:query",
+          element: <Search />
+        },
+        {
+          path: "/:type/:slug" ,
           element: <Search />
         }
       ]

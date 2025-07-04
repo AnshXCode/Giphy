@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 function Gif({ gif, hover = true }) {
     return (
-        <Link to={`${gif.type}/${gif.slug}`}>
+        <Link to={`/${gif.type}/${gif.slug}`}>
             <div 
-                className=" w-full mb-2 relative cursor-pointer
-                group aspect-video
+                className="w-full mb-2 relative cursor-pointer
+                group
                 "
             >
                 <img
@@ -15,7 +15,7 @@ function Gif({ gif, hover = true }) {
                 {
                     hover &&
                     <div
-                        className=" absolute inset-0
+                        className=" absolute top-0 left-0 right-0 bottom-0
                         rounded opacity-0
                         group-hover:opacity-100 bg-gradient-to-b from-transparent to-black font-bold flex items-end gap-2 p-2
                         "
