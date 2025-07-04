@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import { useGifContext } from "../context/GifContext";
 import Gif from "../components/Gif";
+import { HiMiniChevronUp, HiMiniChevronDown } from "react-icons/hi2";
+import FollowOn from "../components/FollowOn";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 const contentType = ["gif", "stickers", "texts"];
 
@@ -51,6 +54,47 @@ function SingleGif() {
                                     <div></div>
                                 </div>
                             </div>
+                            {
+                                gif?.user?.description && (
+                                    <p className="py-4 whitespace-pre-line
+                                    text-sm text-gray-400
+                                    ">
+                                        {
+                                            (readMore || gif?.user?.description.length < 100) ?
+                                                gif?.user?.description :
+                                                gif?.user?.description.slice(0, 100) + "..."
+                                        }
+                                        {gif?.user?.description.length > 100 &&
+                                            <div onClick={() => setReadMore(prev => !prev)}>
+                                                {
+                                                    readMore ?
+                                                        <>
+                                                            Read less <HiMiniChevronUp size={20} />
+                                                        </> :
+                                                        <>
+                                                            Read More <HiMiniChevronDown size={20} />
+                                                        </>
+                                                }
+                                            </div>
+                                        }
+                                        <FollowOn />
+                                        <div className="divider" />
+                                        {
+                                            gif?.source && (
+                                                <div>
+                                                    <span className="faded-text">Source</span>
+                                                    <div className="flex items-center text-sm font-bold gap-1">
+                                                        <HiOutlineExternalLink size={25} />
+                                                        <a href={gif.source} target="_blank" className="truncate">
+                                                            {gif.source}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    </p>
+                                )
+                            }
                         </>
                     )
                 }
