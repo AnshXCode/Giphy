@@ -5,6 +5,7 @@ import Layout from './layout/Layout';
 import Category from './pages/Category';
 import Home from './pages/Home';
 import Search from "./pages/Search";
+import SingleGif from "./pages/SingleGif";
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
         },
         {
           path: "/:type/:slug" ,
-          element: <Search />
+          element: <SingleGif />
         }
       ]
     }

@@ -12,14 +12,14 @@ function Header() {
     const [showCategories, setShowCategories] = useState(false);
     const { gf, favorites } = useGifContext();
 
-    const fetchGifCategories = async () => {
+    const fetchGifCategories = async() => {
         const { data } = await gf.categories();
         setCategories(data);
     }
 
     useEffect(() => {
         fetchGifCategories();
-    }, [])
+    }, [fetchGifCategories])
 
 
     return (
