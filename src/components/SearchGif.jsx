@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react"
 import { HiMiniXMark, HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ function SearchGif() {
         placeholder="Search all the GIFs and Stickers"
         className="w-full pl-4 pr-14 py-5 text-xl text-black rounded-tl rounded-bl border border-gray-300 outline-none bg-white"
         onKeyDown={(e) => {
-          if (e.key === 'Enter') searchGIFs();
+          if (e.key === "Enter") searchGIFs();
         }}
       />
       {

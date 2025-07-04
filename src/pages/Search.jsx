@@ -7,47 +7,47 @@ import Gif from "../components/Gif";
 
 function Search() {
 
-    const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
-    const { gf, filter } = useGifContext();
+  const { gf, filter } = useGifContext();
 
-    const { query } = useParams();
+  const { query } = useParams();
 
-    const fetchSearchResults = async () => {
-        const { data } = await gf.search(query, {
-            sort: "relavent",
-            lang: 'en',
-            type: filter,
-            limit: 20,
-        });
-        setSearchResults(data);
-    }
+  const fetchSearchResults = async () => {
+    const { data } = await gf.search(query, {
+      sort: "relavent",
+      lang: "en",
+      type: filter,
+      limit: 20,
+    });
+    setSearchResults(data);
+  }
 
-    useEffect(() => {
-        fetchSearchResults();
-    }, [filter, query])
+  useEffect(() => {
+    fetchSearchResults();
+  }, [filter, query])
 
 
-    return (
-        <div className="my-4">
-            <h2 className="text-5xl pb-3 font-extrabold">{query}</h2>
-            <FilterGif alignLeft={true} />
-            <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
-                {
-                    searchResults.length > 0 &&
+  return (
+    <div className="my-4">
+      <h2 className="text-5xl pb-3 font-extrabold">{query}</h2>
+      <FilterGif alignLeft={true} />
+      <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
+        {
+          searchResults.length > 0 &&
                     searchResults.map((gif) => {
-                        return <Gif gif={gif} key={gif.id} />
+                      return <Gif gif={gif} key={gif.id} />
                     })
-                }
-            </div>
-            {
-                searchResults.length === 0 &&
+        }
+      </div>
+      {
+        searchResults.length === 0 &&
                 <span>
                     No Gifs found for {query}, Try searching for Stickers instead
                 </span>
-            }
-        </div>
-    )
+      }
+    </div>
+  )
 }
 
 export default Search

@@ -1,9 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
 import { GifProvider } from "./context/GifContext";
-import Layout from './layout/Layout';
-import Category from './pages/Category';
-import Home from './pages/Home';
+import Layout from "./layout/Layout";
+import Category from "./pages/Category";
+import Home from "./pages/Home";
 import Search from "./pages/Search";
 import SingleGif from "./pages/SingleGif";
 
