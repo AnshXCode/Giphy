@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.svg";
 import { HiEllipsisVertical, HiMiniBars3BottomRight } from "react-icons/hi2";
 import { useGifContext } from "../context/GifContext";
 import Category from "../pages/Category";
+import SearchGif from "./SearchGif";
 
 function Header() {
 
@@ -102,7 +103,7 @@ function Header() {
                     </div>
                 </div>
             }
-            {/* <Search /> */}
+            <SearchGif />
         </nav>
     )
 }

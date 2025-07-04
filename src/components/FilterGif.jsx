@@ -1,4 +1,3 @@
-import React from 'react';
 import { useGifContext } from "../context/GifContext";
 import { HiMiniArrowTrendingUp } from "react-icons/hi2";
 

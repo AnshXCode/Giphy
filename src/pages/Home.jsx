@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import {useEffect} from 'react';
 import { useGifContext } from "../context/GifContext";
 import Gif from "../components/Gif";
 import FilterGif from "../components/FilterGif";
