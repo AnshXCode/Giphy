@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
-import { useGifContext } from "../context/context";
-import Gif from "../components/gif";
+import { useGifContext } from "../context/GifContext";
+import Gif from "../components/Gif";
 
 function Home() {
 

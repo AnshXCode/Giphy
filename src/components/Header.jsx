@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.svg";
 import { HiEllipsisVertical, HiMiniBars3BottomRight } from "react-icons/hi2";
-import { useGifContext } from "../context/context";
-import Category from "../pages/category";
+import { useGifContext } from "../context/GifContext";
+import Category from "../pages/Category";
 
 function Header() {
 
