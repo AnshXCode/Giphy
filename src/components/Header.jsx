@@ -9,7 +9,7 @@ function Header() {
 
     const [categories, setCategories] = useState([]);
     const [showCategories, setShowCategories] = useState(false);
-    const { gf, filter, setFilter, favorites } = useGifContext();
+    const { gf, favorites } = useGifContext();
 
     const fetchGifCategories = async () => {
         const { data } = await gf.categories();
