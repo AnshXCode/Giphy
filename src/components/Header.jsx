@@ -12,7 +12,7 @@ function Header() {
   const [showCategories, setShowCategories] = useState(false);
   const { gf, favorites } = useGifContext();
 
-  const fetchGifCategories = async() => {
+  const fetchGifCategories = async () => {
     const { data } = await gf.categories();
     setCategories(data);
   }
@@ -30,12 +30,12 @@ function Header() {
             className="w-8"
           />
           <h1 className=" text-5xl tracking-tight font-bold cursor-pointer">
-                        GIPHY
+            GIPHY
           </h1>
         </Link>
         <div className="font-bold text-md flex gap-2 items-center">
           {
-            categories.slice(0, 4 ).map((category) => {
+            categories.slice(0, 4).map((category) => {
               return (
                 <Link to={`${category.name_encoded}`}
                   className="hover:gradient border-b-4 px-4 py-1
@@ -49,7 +49,7 @@ function Header() {
             })
           }
           <Link className=" px-4 py-1 hover:gradient border-b-4 hidden lg:block">
-                        Reactions
+            Reactions
           </Link>
           <button
             onClick={() => setShowCategories(!showCategories)}
@@ -62,10 +62,11 @@ function Header() {
                     `}
             />
           </button>
-          {favorites &&
-                        <div className="h-9 bg-gray-700 pt-1.5 px-6 cursor-pointer rounded">
-                          <Link to="/favorites">Favorite GIFS</Link>
-                        </div>}
+          {favorites.length > 0 &&
+            <Link to="/favorites">
+              <div className="h-9 bg-gray-700 pt-1.5 px-6 cursor-pointer rounded">
+                Favorite GIFS
+              </div></Link>}
 
           <button>
             <HiMiniBars3BottomRight

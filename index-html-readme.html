@@ -1,0 +1,96 @@
+<!-- 
+  ✅ Declares that this is an HTML5 document. 
+  Tells the browser to use modern standards for rendering.
+-->
+<!doctype html>
+
+<!-- 
+  ✅ Root of the HTML document.
+  The `lang="en"` helps with accessibility and search engine optimization (SEO).
+-->
+<html lang="en">
+
+  <head>
+    <!-- 
+      ✅ Character encoding declaration.
+      UTF-8 supports almost every character from all languages (including emojis 😃).
+    -->
+    <meta charset="UTF-8" />
+
+    <!-- 
+      ✅ Makes your website responsive.
+      Sets the width of the page to the device's screen size and disables zooming out by default.
+      Must-have for mobile-friendly design.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 
+      ✅ (Recommended) Gives your webpage a title shown in the browser tab.
+      Also important for SEO.
+    -->
+    <title>My React + Vite App</title>
+
+    <!-- 
+      ✅ (Optional but important) Meta tags provide metadata about your site.
+      Not shown on the page, but used by browsers, search engines, and social media.
+
+      Some common types of meta tags:
+        🔹 <meta name="description" content="Brief summary of your page for search engines.">
+        🔹 <meta name="keywords" content="React, Vite, Tailwind, JavaScript">
+        🔹 <meta name="author" content="Ansh">
+        🔹 <meta property="og:title" content="Social media preview title">
+        🔹 <meta property="og:image" content="/cover.png">
+
+      Add below as needed:
+    -->
+
+    <!-- SEO Meta Tags (optional) -->
+    <meta name="description" content="A modern web app built with React, Vite, and Tailwind CSS." />
+    <meta name="keywords" content="React, Vite, Tailwind, JavaScript, Web Development" />
+    <meta name="author" content="Ansh" />
+
+    <!-- Open Graph Meta Tags for Social Sharing (optional) -->
+    <meta property="og:title" content="My React App" />
+    <meta property="og:description" content="Check out this cool React app built with Vite!" />
+    <meta property="og:image" content="/cover.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com" />
+
+    <!-- 
+      ✅ (Optional) Link to a favicon — a small icon shown in the browser tab.
+      Place favicon.ico in public/ folder.
+    -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- 
+      ✅ Vite injects your compiled CSS & JS here during build.
+      You don’t need to manually include them.
+    -->
+  </head>
+
+  <body>
+    <!-- 
+      ✅ This is the root element.
+      React will mount your entire app inside this <div> via ReactDOM.
+    -->
+    <div id="root"></div>
+
+    <!-- 
+      ✅ Main script entry point.
+      - `type="module"` allows use of modern ES6+ import/export syntax.
+      - Vite starts bundling from here (`src/main.jsx`).
+      - Dev mode supports HMR (hot module replacement).
+    -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+
+</html>
+
+
+<!-- 🧠 What Are Meta Tags?
+Meta tags are hidden HTML elements placed in the <head> section of the document. They provide information about the webpage such as:
+
+SEO	Describe your page for search engines
+Social Media (Open Graph)	Control how your page looks when shared on Facebook, LinkedIn
+Accessibility	Help screen readers and other tools understand the content
+Browser Behavior	Viewport meta controls layout on mobile devices -->

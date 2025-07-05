@@ -6,6 +6,7 @@ import Category from "./pages/Category";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import SingleGif from "./pages/SingleGif";
+import Favorites from "./pages/Favorites";
 
 function App() {
 
@@ -28,8 +29,12 @@ function App() {
           element: <Search />
         },
         {
-          path: "/:type/:slug" ,
+          path: "/:type/:slug",
           element: <SingleGif />
+        },
+        {
+          path:"/favorites",
+          element: <Favorites />
         }
       ]
     }

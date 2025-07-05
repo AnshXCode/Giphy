@@ -1,79 +1,124 @@
+// Import predefined sets of global variables for different environments (browser, node, etc.)
 import globals from "globals";
+
+// Import the official ESLint plugin for JavaScript base rules
 import pluginJs from "@eslint/js";
+
+// Import the ESLint plugin for React-specific rules
 import pluginReact from "eslint-plugin-react";
 
 export default [
+
   {
-    // Apply configuration to all JavaScript-related files
-    files: ["**/*.{js,mjs,cjs,jsx}"],
+    // ✅ Apply ESLint rules only to these JavaScript file types
+    files: ["**/*.{js,mjs,cjs,jsx}"], // Targets all JS and JSX files in all folders
   },
+
   {
-    // Global language options, including browser globals
+    // ✅ Set global language options for linting
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      globals: globals.browser, // Add browser globals
+      ecmaVersion: "latest",         // Support the latest ECMAScript features
+      sourceType: "module",          // Treat files as ES Modules
+      globals: globals.browser,      // Define browser-specific global variables (e.g., window, document)
     },
-    // Ignore directories as specified
+
+    // ✅ Ignore files and folders from being linted
     ignores: [
-      "node_modules",
-      "dist",
-      "/build",
-      "/.github",
-      "/editor",
-      "/public",
+      "node_modules", // Dependencies folder
+      "dist",         // Build output
+      "/build",       // Optional custom build folder
+      "/.github",     // GitHub config files
+      "/editor",      // Any editor-related code (optional)
+      "/public",      // Static public assets
     ],
   },
-  // Apply the base recommended config from ESLint
-  pluginJs.configs.recommended,
-  // Apply the recommended config for React
-  pluginReact.configs.flat.recommended,
-  {
-    // Apply custom rules
-    rules: {
-      "max-len": ["error", 300],
-      "linebreak-style": "off",
-      "require-jsdoc": "off",
-      "react/prop-types": "off",
-      "react/react-in-jsx-scope": "off",
-      "object-curly-spacing": "off",
-      "comma-dangle": "off",
-      "quotes": ["error", "double"],
-      "indent": ["error", 2],
-      "no-unused-vars": "off",
-      "camelcase": "off",
-      "no-undef": "off",
-      "no-useless-escape": "off",
-      "no-empty": "off",
 
+  // ✅ Apply the default recommended ESLint rules for JavaScript
+  pluginJs.configs.recommended,
+
+  // ✅ Apply the official React plugin's recommended rules (Flat Config version)
+  pluginReact.configs.flat.recommended,
+
+  {
+    // ✅ Customize ESLint rules to match your team's coding style
+    rules: {
+      // Enforce a very long line limit before erroring (can be adjusted)
+      "max-len": ["error", 300],
+
+      // Turn off rule that enforces Unix-style line endings
+      "linebreak-style": "off",
+
+      // Turn off rule that requires documentation (JSDoc)
+      "require-jsdoc": "off",
+
+      // Disable React prop-types checking (you might be using TypeScript instead)
+      "react/prop-types": "off",
+
+      // Turn off React import requirement for JSX (not needed in React 17+)
+      "react/react-in-jsx-scope": "off",
+
+      // Disable spacing rule for curly braces
+      "object-curly-spacing": "off",
+
+      // Turn off trailing comma requirement
+      "comma-dangle": "off",
+
+      // Enforce use of double quotes for strings
+      "quotes": ["error", "double"],
+
+      // Enforce 2-space indentation
+      "indent": ["error", 2],
+
+      // Disable unused variable checking (use with caution)
+      "no-unused-vars": "off",
+
+      // Disable camelCase enforcement (can be useful in backend code or APIs)
+      "camelcase": "off",
+
+      // Turn off undefined variable error (used cautiously)
+      "no-undef": "off",
+
+      // Turn off escaping rules (for regex etc.)
+      "no-useless-escape": "off",
+
+      // Allow empty code blocks
+      "no-empty": "off",
     },
-    // React-specific settings
+
+    // ✅ React-specific configuration settings
     settings: {
       react: {
-        createClass: "createReactClass",
-        pragma: "React",
-        fragment: "Fragment",
-        version: "detect", // Automatically detect React version
-        flowVersion: "0.53", // Flow version if using Flow
+        createClass: "createReactClass", // For older React apps using createReactClass()
+        pragma: "React",                 // The default JSX pragma
+        fragment: "Fragment",            // Fragment shorthand syntax support
+        version: "detect",               // Auto-detect React version from your project
+        flowVersion: "0.53",             // Flow version (if Flow is used instead of TypeScript)
       },
     },
   },
+
   {
-    // Overrides for specific files (like .eslintrc.js files)
-    files: [".eslintrc.{js,cjs}"],
+    // ✅ Apply specific overrides for your ESLint config files themselves
+    files: [".eslintrc.{js,cjs}"], // Targets ESLint config files
+
     languageOptions: {
-      sourceType: "script",
-      globals: globals.node, // Add node-specific globals
+      sourceType: "script",       // Treated as traditional script files (not modules)
+      globals: globals.node,      // Enable Node.js global variables like `__dirname`, `require`, etc.
     },
   },
 ];
 
-// How npm run lint:fix fixed your files?
+// 🔧 How npm run lint:fix Worked
 // When you ran:
 // npm run lint:fix
-// ESLint did this:
-// Auto-fixed all rules that are fixable like:
-// "quotes": ["error", "double"] → converted ' to "
-// "indent": ["error", 2] → adjusted indentation
-// Removed unnecessary spaces, semicolons, etc. where rules supported it
-// ➡️ These are called auto-fixable rules. ESLint fixed them silently.
+// ESLint used the rules in this file and auto-fixed all issues that were auto-fixable.
+
+// ⚡ What ESLint Auto-Fixed:
+// Rule	Example Change
+// "quotes": ["error", "double"]	'Hello' → "Hello"
+// "indent": ["error", 2]	Adjusted spacing to 2 spaces
+// "comma-dangle": "off"	Removed or left trailing commas as-is
+// "react/react-in-jsx-scope": "off"	Removed unnecessary import React lines
+// object-curly-spacing, no-useless-escape	Cleaned formatting
+
+// ➡️ ESLint silently fixed these using the --fix flag behind the scenes.
