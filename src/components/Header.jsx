@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { HiEllipsisVertical, HiMiniBars3BottomRight } from "react-icons/hi2";
 import { useGifContext } from "../context/GifContext";
-import Category from "../pages/Category";
 import SearchGif from "./SearchGif";
 
 function Header() {
@@ -23,7 +22,7 @@ function Header() {
 
 
   return (
-    <nav>
+    <nav className="relative">
       <div className=" relative flex gap-4 justify-between items-center mb-2">
         <Link to="/" className="flex gap-2">
           <img src={logo} alt="logo.jpg"
@@ -51,7 +50,8 @@ function Header() {
             Reactions
           </Link>
           <button
-            onClick={() => setShowCategories(!showCategories)}
+            onMouseEnter={() => setShowCategories(true)}
+            onMouseLeave={() => setShowCategories(false)}
           >
             <HiEllipsisVertical
               size={35}
@@ -76,29 +76,31 @@ function Header() {
         </div>
 
       </div>
-      {
-        showCategories && <div
-          className="absolute right-0 top-14 px-10 pt-6 pb-9 w-full z-20"
-        >
-          <div className=" gradient p-4 rounded-md">
-            <span className=" text-3xl font-extrabold flex justify-center">Categories</span>
-            <hr className=" bg-gray-100 opacity-50 my-5" />
-            <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {categories.length > 0 && categories.map((category, i) => {
-                return <div key={i}>
-                  <Link
-                    to={`${category.name_encoded}`}
-                    className="transition ease-in-out font-bold flex justify-center"
-                    key={category.name}
-                    onClick={() => showCategories(false)}
-                  >{category.name}</Link>
-                </div>
-              })
-              }
-            </div>
+      <div
+        className={`absolute top-12 left-0 right-0 z-20 transition-all duration-300 ease-in-out
+    ${showCategories ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}
+  `}
+        onMouseEnter={() => setShowCategories(true)}
+        onMouseLeave={() => setShowCategories(false)}
+      >
+        <div className="gradient p-7 rounded-md">
+          <span className="text-3xl font-extrabold">Categories</span>
+          <hr className="bg-gray-100 opacity-50 my-5" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {categories.map((category, i) => (
+              <div key={i}>
+                <Link
+                  to={`${category.name_encoded}`}
+                  className="transition ease-in-out font-bold"
+                  onClick={() => setShowCategories(false)}
+                >
+                  {category.name}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
-      }
+      </div>
       <SearchGif />
     </nav>
   )
