@@ -4,7 +4,6 @@ const GifContext = createContext();
 
 export const GifProvider = ({ children }) => {
 
-
   const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_KEY);
 
   const [gifs, setGifs] = useState([]);

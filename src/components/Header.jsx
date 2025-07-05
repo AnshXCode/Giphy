@@ -39,8 +39,7 @@ function Header() {
               return (
                 <Link to={`${category.name_encoded}`}
                   className="hover:gradient border-b-4 px-4 py-1
-                                    transition ease-in-out hidden lg:block 
-                                    "
+                                    transition ease-in-out hidden lg:block"
                   key={category.name}
                 >
                   {category.name}
@@ -82,18 +81,14 @@ function Header() {
           className="absolute right-0 top-14 px-10 pt-6 pb-9 w-full z-20"
         >
           <div className=" gradient p-4 rounded-md">
-            <span className=" text-3xl font-extrabold flex justify-center
-                        
-                        ">Categories</span>
+            <span className=" text-3xl font-extrabold flex justify-center">Categories</span>
             <hr className=" bg-gray-100 opacity-50 my-5" />
             <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
               {categories.length > 0 && categories.map((category, i) => {
                 return <div key={i}>
                   <Link
                     to={`${category.name_encoded}`}
-                    className=" transition ease-in-out font-bold
-                                        flex justify-center
-                                        "
+                    className="transition ease-in-out font-bold flex justify-center"
                     key={category.name}
                     onClick={() => showCategories(false)}
                   >{category.name}</Link>
