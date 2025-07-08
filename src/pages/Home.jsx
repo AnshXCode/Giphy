@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useGifContext } from "../context/GifContext";
 import Gif from "../components/Gif";
 import FilterGif from "../components/FilterGif";
+import Loading from "../assets/loading.gif";
 
 let ITEMS_PER_FETCH = 10
 
@@ -65,7 +66,7 @@ function Home() {
     <div className="relative">
       <img src="/banner.gif" alt="earth banner" className="mt-2 rounded w-full" />
       <FilterGif showTrending />
-      <div className="h-100 overflow-auto"
+      <div className="columns-2 h-100 overflow-y-scroll"
         onScroll={handleScroll}
         ref={scrollRef}
       >
@@ -74,11 +75,10 @@ function Home() {
         })}
       </div>
       {loading &&
-        <div className="w-40 h-40 rounded-full
-        bg-amber-300 absolute z-20 top-50 flex justify-center items-center
-        ">Loading</div>
+        <div className="text-center">
+          <img src={Loading} alt="Loading" className="inline-block" />
+        </div>
       }
-
       {
         !hasMore && <h1>No More results</h1>
       }
