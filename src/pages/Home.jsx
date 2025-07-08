@@ -11,7 +11,6 @@ function Home() {
   const { gf, gifs, setGifs, filter } = useGifContext();
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const scrollRef = useRef(null);
   const [offset, setOffset] = useState(0);
 
   const fetchTrendingGIFs = useCallback(async () => {
@@ -44,32 +43,30 @@ function Home() {
 
   useEffect(() => {
     fetchTrendingGIFs();
-
     return () => {
     }
   }, [filter, offset]);
 
-  const handleScroll = () => {
-    let scrollRefInfo = scrollRef.current;
-    let { clientHeight, scrollTop, scrollHeight } = scrollRefInfo;
-    console.log(scrollHeight, scrollTop, clientHeight)
+  useEffect(() => {
+    const handleWindowScroll = () => {
+      const { innerHeight, scrollY } = window;
+      const { scrollHeight } = document.body;
 
-    if (scrollTop + clientHeight > scrollHeight - 100)
-    {
-      setOffset(prev => prev + ITEMS_PER_FETCH);
-    }
+      if (innerHeight + scrollY >= scrollHeight - 100)
+      {
+        setOffset(prev => prev + ITEMS_PER_FETCH);
+      }
+    };
 
-  }
+    window.addEventListener('scroll', handleWindowScroll);
+    return () => window.removeEventListener('scroll', handleWindowScroll);
+  }, [offset, hasMore, loading]);
 
-  // columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2 
   return (
     <div className="relative">
       <img src="/banner.gif" alt="earth banner" className="mt-2 rounded w-full" />
       <FilterGif showTrending />
-      <div className="columns-2 h-100 overflow-y-scroll"
-        onScroll={handleScroll}
-        ref={scrollRef}
-      >
+      <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
         {gifs.map((gif, id) => {
           return <Gif gif={gif} key={`${gif.id} + ${id}`} />
         })}
