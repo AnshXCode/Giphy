@@ -42,6 +42,7 @@ function Home() {
 
 
   useEffect(() => {
+    console.log(offset, 'offset')
     fetchTrendingGIFs();
     return () => {
     }
@@ -52,7 +53,7 @@ function Home() {
       const { innerHeight, scrollY } = window;
       const { scrollHeight } = document.body;
 
-      if (innerHeight + scrollY >= scrollHeight - 100)
+      if (innerHeight + scrollY >= scrollHeight - 100 && !loading)
       {
         setOffset(prev => prev + ITEMS_PER_FETCH);
       }
