@@ -4,7 +4,7 @@ import Gif from "../components/Gif";
 import FilterGif from "../components/FilterGif";
 import Loading from "../assets/loading.gif";
 
-let ITEMS_PER_FETCH = 10
+let ITEMS_PER_FETCH = 20
 
 function Home() {
 
@@ -12,6 +12,7 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
+  const mount = useRef(true);
 
   const fetchTrendingGIFs = useCallback(async () => {
 
@@ -38,15 +39,25 @@ function Home() {
       setLoading(false);
     }
 
-  }, [loading, hasMore, offset])
+  }, [loading, hasMore, offset, filter])
 
 
   useEffect(() => {
-    console.log(offset, 'offset')
-    fetchTrendingGIFs();
-    return () => {
+    if (mount.current)
+    {
+      mount.current = false;
+      return;
     }
-  }, [filter, offset]);
+
+    fetchTrendingGIFs();
+  }, [offset, filter]);
+
+
+  useEffect(() => {
+    setGifs([]);
+    setOffset(0);
+    setHasMore(true);
+  }, [filter])
 
   useEffect(() => {
     const handleWindowScroll = () => {
@@ -61,7 +72,7 @@ function Home() {
 
     window.addEventListener('scroll', handleWindowScroll);
     return () => window.removeEventListener('scroll', handleWindowScroll);
-  }, [offset, hasMore, loading]);
+  }, [loading]);
 
   return (
     <div className="relative">
