@@ -12,25 +12,29 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
+  const [filterChanged, setFilterChanged] = useState(false);
   const mount = useRef(true);
 
   const fetchTrendingGIFs = useCallback(async () => {
-
     try
     {
       if (loading || !hasMore) return;
+      console.log(offset, "HERE-OFFSET")
       setLoading(true);
       const { data } = await gf.trending({
         limit: ITEMS_PER_FETCH,
         type: filter,
         rating: "g",
-        offset: offset
+        offset: offset,
+        _cacheBuster: Date.now()
       });
       if (data.length < 10)
       {
         setHasMore(false);
       }
-      setGifs(prev => [...prev, ...data]);
+      setGifs(prev => { console.log(prev, "PREV")
+        return [...prev, ...data]
+      });
     } catch (error)
     {
       console.log(error);
@@ -48,16 +52,21 @@ function Home() {
       mount.current = false;
       return;
     }
-
     fetchTrendingGIFs();
-  }, [offset, filter]);
+  }, [offset, filterChanged]);
 
-
-  useEffect(() => {
+  const reset = async() => {
     setGifs([]);
     setOffset(0);
     setHasMore(true);
-  }, [filter])
+    setFilterChanged(!filterChanged)
+  }
+
+  useEffect(() => {
+    reset();
+  }, [filter]);
+
+  console.log(offset, "Offset");
 
   useEffect(() => {
     const handleWindowScroll = () => {
@@ -70,8 +79,8 @@ function Home() {
       }
     };
 
-    window.addEventListener('scroll', handleWindowScroll);
-    return () => window.removeEventListener('scroll', handleWindowScroll);
+    window.addEventListener("scroll", handleWindowScroll);
+    return () => window.removeEventListener("scroll", handleWindowScroll);
   }, [loading]);
 
   return (
