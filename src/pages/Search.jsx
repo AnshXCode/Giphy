@@ -13,7 +13,7 @@ function Search() {
 
   const { query } = useParams();
 
-  const fetchSearchResults = async () => {
+  const fetchSearchResults = async() => {
     const { data } = await gf.search(query, {
       sort: "relavent",
       lang: "en",

@@ -12,11 +12,9 @@ export const GifProvider = ({ children }) => {
 
   const addToFavorites = (id) => {
     let updatedFavorites;
-    if (favorites.includes(id))
-    {
+    if (favorites.includes(id)) {
       updatedFavorites = favorites.filter(v => v !== id)
-    } else
-    {
+    } else {
       updatedFavorites = [...favorites, id];
     }
     setFavorites(updatedFavorites);

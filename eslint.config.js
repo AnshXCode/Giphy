@@ -17,19 +17,19 @@ export default [
   {
     // ✅ Set global language options for linting
     languageOptions: {
-      ecmaVersion: "latest",         // Support the latest ECMAScript features
-      sourceType: "module",          // Treat files as ES Modules
-      globals: globals.browser,      // Define browser-specific global variables (e.g., window, document)
+      ecmaVersion: "latest", // Support the latest ECMAScript features
+      sourceType: "module", // Treat files as ES Modules
+      globals: globals.browser, // Define browser-specific global variables (e.g., window, document)
     },
 
     // ✅ Ignore files and folders from being linted
     ignores: [
       "node_modules", // Dependencies folder
-      "dist",         // Build output
-      "/build",       // Optional custom build folder
-      "/.github",     // GitHub config files
-      "/editor",      // Any editor-related code (optional)
-      "/public",      // Static public assets
+      "dist", // Build output
+      "/build", // Optional custom build folder
+      "/.github", // GitHub config files
+      "/editor", // Any editor-related code (optional)
+      "/public", // Static public assets
     ],
   },
 
@@ -83,16 +83,26 @@ export default [
 
       // Allow empty code blocks
       "no-empty": "off",
+
+
+      // ✅ Add these
+      "keyword-spacing": ["error", { "before": true, "after": true }],
+      "space-in-parens": ["error", "never"],
+      "space-before-blocks": ["error", "always"],
+      "space-before-function-paren": ["error", "never"],
+      "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+      "block-spacing": ["error", "always"],
+      "no-multi-spaces": "error"
     },
 
     // ✅ React-specific configuration settings
     settings: {
       react: {
         createClass: "createReactClass", // For older React apps using createReactClass()
-        pragma: "React",                 // The default JSX pragma
-        fragment: "Fragment",            // Fragment shorthand syntax support
-        version: "detect",               // Auto-detect React version from your project
-        flowVersion: "0.53",             // Flow version (if Flow is used instead of TypeScript)
+        pragma: "React", // The default JSX pragma
+        fragment: "Fragment", // Fragment shorthand syntax support
+        version: "detect", // Auto-detect React version from your project
+        flowVersion: "0.53", // Flow version (if Flow is used instead of TypeScript)
       },
     },
   },
@@ -102,8 +112,8 @@ export default [
     files: [".eslintrc.{js,cjs}"], // Targets ESLint config files
 
     languageOptions: {
-      sourceType: "script",       // Treated as traditional script files (not modules)
-      globals: globals.node,      // Enable Node.js global variables like `__dirname`, `require`, etc.
+      sourceType: "script", // Treated as traditional script files (not modules)
+      globals: globals.node, // Enable Node.js global variables like `__dirname`, `require`, etc.
     },
   },
 ];

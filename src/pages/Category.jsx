@@ -10,7 +10,7 @@ function Category() {
   const { category } = useParams();
   const { gf } = useGifContext();
 
-  const fetchResults = async () => {
+  const fetchResults = async() => {
     const { data } = await gf.gifs(category, category);
     setResults(data);
   };

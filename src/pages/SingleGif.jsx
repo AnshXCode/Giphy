@@ -27,7 +27,7 @@ function SingleGif() {
   }
 
 
-  const fetchGif = async () => {
+  const fetchGif = async() => {
     const gifId = slug.split("-");
     const { data } = await gf.gif(gifId.at(-1));
     const { data: related } = await gf.related(gifId.at(-1), {
@@ -38,8 +38,7 @@ function SingleGif() {
   }
 
   useEffect(() => {
-    if (!contentType.includes(type))
-    {
+    if (!contentType.includes(type)) {
       throw new Error("Invalid Content  Type");
     };
     fetchGif();

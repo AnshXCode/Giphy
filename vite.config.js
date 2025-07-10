@@ -17,9 +17,9 @@ import path from "path";
 export default defineConfig({
   // Register all Vite plugins here
   plugins: [
-    react(),         // Enables React features like JSX, HMR, and Fast Refresh
-    tailwindcss(),   // Enables Tailwind CSS support via PostCSS
-    svgr(),          // Allows SVGs to be imported and used as React components import { ReactComponent as Logo } from './logo.svg';
+    react(), // Enables React features like JSX, HMR, and Fast Refresh
+    tailwindcss(), // Enables Tailwind CSS support via PostCSS
+    svgr(), // Allows SVGs to be imported and used as React components import { ReactComponent as Logo } from './logo.svg';
   ],
 
   // Customize how modules are resolved
@@ -38,8 +38,8 @@ export default defineConfig({
 
   // Configure development server behavior
   server: {
-    open: true,   // Automatically opens your app in the default browser on startup
-    port: 3000,   // Runs the dev server on http://localhost:3000 instead of the default (5173)
+    open: true, // Automatically opens your app in the default browser on startup
+    port: 3000, // Runs the dev server on http://localhost:3000 instead of the default (5173)
   },
 
   // Define global constants or environment shims available throughout the app

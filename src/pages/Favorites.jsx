@@ -8,7 +8,7 @@ function Favorites() {
   const [favGifs, setFavGifs] = useState([]);
 
 
-  const fetchFavorites = async () => {
+  const fetchFavorites = async() => {
     console.log(favorites)
     const res = await Promise.all(favorites.map((id) => {
       return gf.gif(id);
